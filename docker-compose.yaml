@@ -1,0 +1,7 @@
+services:
+  mongo:
+    image: 'mongo:latest'
+    container_name: nest-microservices-mongo-db
+    command: mongod --port 27018
+    ports:
+      - '27018:27018'
