@@ -1,7 +1,14 @@
 services:
+  reservations:
+    build:
+      context: .
+      dockerfile: ./apps/reservations/Dockerfile
+      target: development
+    command: npm run start:dev reservations
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/usr/src/app
   mongo:
     image: 'mongo:latest'
     container_name: nest-microservices-mongo-db
-    command: mongod --port 27018
-    ports:
-      - '27018:27018'
