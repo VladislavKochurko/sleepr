@@ -9,6 +9,20 @@ services:
       - '3000:3000'
     volumes:
       - .:/usr/src/app
+    env_file:
+      - ./apps/reservations/.env
+  auth:
+    build:
+      context: .
+      dockerfile: ./apps/auth/Dockerfile
+      target: development
+    command: npm run start:dev auth
+    ports:
+      - '3001:3001'
+    volumes:
+      - .:/usr/src/app
+    env_file:
+      - ./apps/auth/.env
   mongo:
     image: 'mongo:latest'
     container_name: nest-microservices-mongo-db

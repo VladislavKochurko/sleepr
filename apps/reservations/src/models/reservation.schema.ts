@@ -5,22 +5,22 @@ import { AbstractDocument } from '@app/common';
 @Schema({ versionKey: false })
 export class ReservationDocument extends AbstractDocument {
   @Prop()
-  timestamp: Date;
+  public timestamp: Date;
 
   @Prop()
-  startDate: Date;
+  public startDate: Date;
 
   @Prop()
-  endDate: Date;
+  public endDate: Date;
 
   @Prop()
-  userId: string;
+  public userId: string;
 
   @Prop()
-  placeId: string;
+  public placeId: string;
 
   @Prop()
-  invoiceId: string;
+  public invoiceId: string;
 }
 
 export const ReservationSchema =

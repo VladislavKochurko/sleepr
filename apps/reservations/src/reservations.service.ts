@@ -7,25 +7,26 @@ import { ReservationsRepository } from './reservations.repository';
 @Injectable()
 export class ReservationsService {
   constructor(private readonly reservationRepository: ReservationsRepository) {}
-  public create(
+  public async create(
     createReservationDto: CreateReservationDto,
+    userId: string,
   ): Promise<ReservationDocument> {
     return this.reservationRepository.create({
       ...createReservationDto,
       timestamp: new Date(),
-      userId: '123',
+      userId,
     });
   }
 
-  public findAll(): Promise<ReservationDocument[]> {
+  public async findAll(): Promise<ReservationDocument[]> {
     return this.reservationRepository.find({});
   }
 
-  public findOne(_id: string): Promise<ReservationDocument> {
+  public async findOne(_id: string): Promise<ReservationDocument> {
     return this.reservationRepository.findOne({ _id });
   }
 
-  public update(
+  public async update(
     _id: string,
     updateReservationDto: UpdateReservationDto,
   ): Promise<ReservationDocument> {
@@ -35,7 +36,7 @@ export class ReservationsService {
     );
   }
 
-  public remove(_id: string): Promise<ReservationDocument> {
+  public async remove(_id: string): Promise<ReservationDocument> {
     return this.reservationRepository.findOneAndDelete({ _id });
   }
 }
