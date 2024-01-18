@@ -1,7 +1,7 @@
-import { CreateChargeDto } from '@app/common';
 import { Controller, UsePipes, ValidationPipe } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import Stripe from 'stripe';
+import { PaymentsCreateChargeDto } from './dto';
 import { PaymentsService } from './payments.service';
 
 @Controller()
@@ -11,8 +11,8 @@ export class PaymentsController {
   @MessagePattern('create_charge')
   @UsePipes(new ValidationPipe())
   async createCharge(
-    @Payload() createChargeDto: CreateChargeDto,
+    @Payload() paymentsCreateChargeDto: PaymentsCreateChargeDto,
   ): Promise<Stripe.Response<Stripe.PaymentIntent>> {
-    return this.paymentsService.createCharge(createChargeDto);
+    return this.paymentsService.createCharge(paymentsCreateChargeDto);
   }
 }
